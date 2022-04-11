@@ -16,7 +16,7 @@ const navbar = [
         ]
     },
     {text: '后端', link: '/algorithm/'},
-    {text: '数据库', link: ''},
+    {text: '计算机', link: '/guide/computers.md',activeMatch: '^/guide/computers'},
 ]
 module.exports = navbar
 
