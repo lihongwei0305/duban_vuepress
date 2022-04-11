@@ -1,0 +1,16 @@
+{
+  "name": "duban_vuepress",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "vuepress": "^2.0.0-beta.39"
+  },
+  "dependencies": {
+    "@vuepress/cli": "^2.0.0-alpha.8"
+  }
+}
