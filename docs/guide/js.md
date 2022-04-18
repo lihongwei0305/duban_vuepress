@@ -113,6 +113,17 @@ let e = arr1.reduce((p, c) => {
 }, [])
 ```
 
+## JS操作DOM
+
+### JS拖拽
+````text
+拖拽的实现原理：通过事件mousedown（事件的触发） →mousemove（事件的控制） →mouseup（事件的清除），拖拽的过程就是mousemove阶段；
+问题产生的原因：因为mousemove 的间隔性触发，当两次mousemove事件触发的间隔中，鼠标移动距离出了element的范围，就会产生鼠标脱离element范围，拖拽就停止，
+解决方法： 将mousemove事件挂在docment，而不是对应的element，此时鼠标滑动只要不出docment范围就不会触发上述情况。
+
+
+````
+
 ## JS库
 
 ### 函数库
