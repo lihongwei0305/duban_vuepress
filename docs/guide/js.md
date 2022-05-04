@@ -1,3 +1,101 @@
+## Object
+
+### defineProperty
+- 
+
+- 修改属性的默认特性
+    - [[Configurable]]: 表示属性是否可以通过delete 删除并重新定义，是否可以修改它的特 性，以及是否可以把它改为访问器属性。
+    - [Enumerable]]：表示属性是否可以通过for-in 循环返回。
+    - [[Writable]]：表示属性的值是否可以被修改。
+    - [[Value]]：包含属性实际的值。
+    - [[Get]]：获取函数，在读取属性时调用。默认值为undefined。
+    - [[Set]]：设置函数，在写入属性时调用。默认值为undefined。
+- 调用该方法时时，configurable、enumerable 和writable 的值如果不 指定，则都默认为false
+
+```js
+let person = {}
+Object.defineProperty(person, 'name', {
+    Configurable: false,
+    Enumerable: false,
+    Writable: false,
+    Value: 'zhangsan'
+})
+```
+
+### defineProperties
+
+- 在一个对象上同时定义多个属性
+
+### getOwnPropertyDescriptor
+
+- 可以取得指定属性的属性描述符
+
+### getOwnPropertyDescriptors
+
+- 这个方法实际上会在每个自有属性上调用Object.getOwnPropertyDescriptor()并在一个新对象中返回它们。
+
+### asOwnProperty
+- 方法用于确定某个属性是在实例上还是在原型对象上
+### 对象解构
+
+```js
+//解构赋值的同时定义默认值
+let {name, job = 'Software engineer'} = person;
+
+//如果是给事先声明的变量赋值，则赋值表达式必须包含在一对括号中：
+let personName, personAge;
+let person = {
+    name: 'Matt',
+    age: 27
+};
+({name: personName, age: personAge} = person);
+console.log(personName, personAge); // Matt, 27
+```
+```js
+// 嵌套解构
+// 解构对于引用嵌套的属性或赋值目标没有限制。为此，可以通过解构来复制对象属性：
+let person = {
+  name: 'Matt',
+  age: 27,
+  job: {
+    title: 'Software engineer'
+  }
+};
+let personCopy = {};
+({
+  name: personCopy.name,
+  age: personCopy.age,
+  job: personCopy.job
+} = person);
+```
+### 工厂模式
+```text
+工厂模式是一种众所周知的设计模式，广泛应用于软件工程领域，用于抽象创建特定对象的过程。
+```
+## 集合引用类型
+
+### Map
+
+```text
+使用对象属性最为key，再使用key做引用值
+```
+
+- Api
+    - get()
+    - set() 方法返回映射实例，因此可以把多个操作连缀起来
+    - has()
+    - delete()
+    - clear()
+
+### WeakMap
+
+### Set
+
+### WeakSet
+
+::: tip weak：弱引用，会被垃圾回收机制回收
+:::
+
 ## JS高级
 
 ### 下载 txt 文件
@@ -116,6 +214,7 @@ let e = arr1.reduce((p, c) => {
 ## JS操作DOM
 
 ### JS拖拽
+
 ````text
 拖拽的实现原理：通过事件mousedown（事件的触发） →mousemove（事件的控制） →mouseup（事件的清除），拖拽的过程就是mousemove阶段；
 问题产生的原因：因为mousemove 的间隔性触发，当两次mousemove事件触发的间隔中，鼠标移动距离出了element的范围，就会产生鼠标脱离element范围，拖拽就停止，
