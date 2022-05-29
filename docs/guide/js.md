@@ -35,7 +35,9 @@ Object.defineProperty(person, 'name', {
 - 这个方法实际上会在每个自有属性上调用Object.getOwnPropertyDescriptor()并在一个新对象中返回它们。
 
 ### asOwnProperty
+
 - 方法用于确定某个属性是在实例上还是在原型对象上
+
 ### 对象解构
 
 ```js
@@ -51,27 +53,31 @@ let person = {
 ({name: personName, age: personAge} = person);
 console.log(personName, personAge); // Matt, 27
 ```
+
 ```js
 // 嵌套解构
 // 解构对于引用嵌套的属性或赋值目标没有限制。为此，可以通过解构来复制对象属性：
 let person = {
-  name: 'Matt',
-  age: 27,
-  job: {
-    title: 'Software engineer'
-  }
+    name: 'Matt',
+    age: 27,
+    job: {
+        title: 'Software engineer'
+    }
 };
 let personCopy = {};
 ({
-  name: personCopy.name,
-  age: personCopy.age,
-  job: personCopy.job
+    name: personCopy.name,
+    age: personCopy.age,
+    job: personCopy.job
 } = person);
 ```
+
 ### 工厂模式
+
 ```text
 工厂模式是一种众所周知的设计模式，广泛应用于软件工程领域，用于抽象创建特定对象的过程。
 ```
+
 ## 集合引用类型
 
 ### Map
@@ -209,6 +215,31 @@ let e = arr1.reduce((p, c) => {
     obj[c.id] ? '' : obj[c.id] = p.push(c)
     return p
 }, [])
+```
+
+### 异步变同步
+
+```js
+function fn() {
+    let timer;
+    return new Promise((resolve) => {
+        console.log(1);
+        timer = setTimeout(() => {
+            clearTimeout(timer);
+            timer = null;
+            resolve();
+        }, 300);
+    });
+}
+
+async function fn1() {
+    await fn();
+    console.log(2);
+}
+
+fn1()
+
+
 ```
 
 ## JS操作DOM
