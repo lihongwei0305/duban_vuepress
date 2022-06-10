@@ -242,6 +242,71 @@ fn1()
 
 ```
 
+### 防抖 节流(简易版)
+
+```js
+//防抖
+function debounce(fun, delay) {
+    return (arg) => {
+        clearTimeout(fun.id)
+        fun.id = setTimeout(() => {
+            fun.call(this, arg)
+        }, delay)
+    }
+}
+
+//节流
+function throttle(fun, delay) {
+    clearTimeout(fun.id)
+    return (arg) => {
+        if (fun.id) return
+        fun.id.setTimeout(() => {
+            fun.call(this, delay)
+            fun.id = null
+        }, delay)
+    }
+}
+```
+
+### 防抖 节流(进阶版)
+
+```js
+// 防抖
+let inputEl = document.querySelector('input')
+const inputChange = (e) => {
+    console.log('输入的值为:', e.target.value)
+    return `结果${e.target.value}`
+}
+inputEl.oninput = (arg) => {
+    debounce(inputChange, 300, false).call(this, arg).then(res => {
+        console.log(res);
+    });
+};
+
+function debounce(fun, delay, isImmediate = false) {
+    let isExcute = isImmediate
+    return (args) => {
+        return new Promise((resolve, reject) => {
+            if (isExcute) {
+                let res = fun.call(this, args)
+                resolve(res)
+                isExcute = false
+            }
+            if (fun.id) {
+                clearTimeout(fun.id)
+            }
+            fun.id = setTimeout(() => {
+                let res = fun.call(this, args)
+                resolve(res)
+                fun.id = null
+                isExcute = isImmediate
+            }, delay);
+        })
+
+    }
+}
+```
+
 ## JS操作DOM
 
 ### JS拖拽
