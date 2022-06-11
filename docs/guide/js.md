@@ -257,12 +257,12 @@ function debounce(fun, delay) {
 
 //节流
 function throttle(fun, delay) {
-    clearTimeout(fun.id)
     return (arg) => {
         if (fun.id) return
-        fun.id.setTimeout(() => {
+        fun.id = setTimeout(() => {
             fun.call(this, delay)
             fun.id = null
+            clearTimeout(fun.id)
         }, delay)
     }
 }
@@ -305,6 +305,40 @@ function debounce(fun, delay, isImmediate = false) {
 
     }
 }
+
+// 节流
+
+let scrollFn = () => {
+    console.log("当前位置:", document.documentElement.scrollTop)
+    return `结果:${document.documentElement.scrollTop}`
+}
+
+document.onscroll = (args) => {
+    throttle(scrollFn, 500).call(this, args).then(res => {
+        console.log(rse)
+    })
+}
+
+function throttle(func, delay, isImmediate = false) {
+    let isExcute = isImmediate
+    return (args) => {
+        return new Promise((resolve, reject) => {
+            if (isExcute) {
+                let res = func.call(this, args);
+                resolve(res)
+                isExcute = false
+            }
+            if (func.id) return
+            setTimeout(() => {
+                let res = func.call(this, args)
+                resolve(res)
+                func.id = null
+                isExcute = isImmediate
+            }, delay)
+        })
+    }
+}
+
 ```
 
 ## JS操作DOM
