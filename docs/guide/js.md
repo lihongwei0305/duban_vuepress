@@ -1,3 +1,30 @@
+
+# 定时器
+```text
+ 默认为1ms，多层嵌套（5层）时为4ms
+```
+
+# 数组
+```text
+创建数组的几种方式：
+    1. 数组字面量
+    2. new Array // 传入数字时为数组的长度
+    3. Array.form(ES6)
+    4. Array.of(ES6)
+    5. Array.prototype.slice
+    5. Array.prototype.concat
+```
+## 类数组
+```text
+有一个length属性，和从零开始索引的属性，但是没有Array的内置方法
+常见的类数组：
+    1. arguments
+    2. NodeList，HTMLCollection，DOMTokenList
+类数组转换为数组：
+    1. slice，concat
+    2. Array.form
+```
+
 ## Object
 
 ### defineProperty
