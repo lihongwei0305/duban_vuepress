@@ -353,6 +353,14 @@ function throttle(func, delay, isImmediate = false) {
 
 ````
 
+## JS打印
+```js
+// 1. 不允许打印
+window.matchMedia("print").addListener(function() {
+  window.alert("当前页面不允许打印");
+})
+```
+
 ## JS库
 
 ### 函数库
