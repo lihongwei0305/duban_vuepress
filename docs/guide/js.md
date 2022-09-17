@@ -368,6 +368,17 @@ function throttle(func, delay, isImmediate = false) {
 
 ```
 
+## 判断页面的状态
+```js
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      console.log('page is visible'); 
+    } else {
+      console.log('page is hidden');
+    }
+});
+```
+
 ## JS操作DOM
 
 ### JS拖拽
