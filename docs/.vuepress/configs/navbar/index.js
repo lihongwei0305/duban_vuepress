@@ -16,8 +16,13 @@ const navbar = [
             }
         ]
     },
-    {text: '后端', link: '/algorithm/'},
-    {text: '计算机', link: '/guide/computers.md',activeMatch: '^/guide/computers'},
+    {
+        text: '后端',
+        children: [
+            {text: 'Java', link: '/guide/java/java.md', activeMatch: '^/java/java'},
+        ]
+    },
+    {text: '计算机', link: '/guide/computers.md', activeMatch: '^/guide/computers'},
 ]
 module.exports = navbar
 
